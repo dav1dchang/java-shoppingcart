@@ -20,6 +20,7 @@ public class ProductController
     @Autowired
     private ProductService productService;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/products",
         produces = {"application/json"})
     public ResponseEntity<?> listAllProducts()
@@ -28,7 +29,7 @@ public class ProductController
         return new ResponseEntity<>(myProducts,
             HttpStatus.OK);
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/product/{productId}",
         produces = {"application/json"})
     public ResponseEntity<?> getProductById(
@@ -39,7 +40,7 @@ public class ProductController
         return new ResponseEntity<>(p,
             HttpStatus.OK);
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping(value = "/product")
     public ResponseEntity<?> addProduct(
         @Valid
@@ -61,7 +62,7 @@ public class ProductController
             responseHeaders,
             HttpStatus.CREATED);
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping(value = "/product/{productid}")
     public ResponseEntity<?> updateProductById(
         @RequestBody
@@ -73,7 +74,7 @@ public class ProductController
             updateProduct);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping(value = "/product/{productid}")
     public ResponseEntity<?> getProductById(
         @PathVariable

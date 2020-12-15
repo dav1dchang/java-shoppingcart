@@ -67,4 +67,18 @@ public class HelperFunctionsImpl
         }
         return listVE;
     }
+
+    @Override
+    public boolean isAuthorizedToMakeChange(String username)
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (username.equalsIgnoreCase(authentication.getName()) ||
+                authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN")))
+        {
+            return true;
+        } else
+        {
+            throw new ResourceNotFoundException(authentication.getName() + " not authorized to make change");
+        }
+    }
 }
