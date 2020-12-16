@@ -36,6 +36,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
                 .antMatchers(HttpMethod.POST, "/users/**").hasAnyRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/users/**").hasAnyRole("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/users/**").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/users/**").hasAnyRole("ADMIN")
                 .antMatchers("/users/**", "/oauth/revoke-token", "/logout").authenticated()
                 .and()
                 .exceptionHandling()

@@ -35,6 +35,7 @@ public class UserController
      * @return JSON list of all users with a status of OK
      * @see UserService#findAll() UserService.findAll()
      */
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/users",
         produces = "application/json")
     public ResponseEntity<?> listAllUsers()
